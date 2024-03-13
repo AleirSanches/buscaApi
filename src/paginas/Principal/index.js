@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Text, View, Image, TouchableOpacity, TextInput, Alert, ScrollView } from 'react-native';
 import estilos from './estilos';
-import api from '../../servicos/api';
 import { buscaUsuario } from '../../servicos/requisicoes/usuario';
+import Reactotron from 'reactotron-react-native';
 
 export default function Principal({ navigation }) {
     const [nomeUsuario, setNomeUsuario] = useState('');
@@ -10,7 +10,7 @@ export default function Principal({ navigation }) {
 
     async function busca(){
         const resultado = await buscaUsuario()
-        console.log(resultado)
+      
         
 
         if (resultado){
