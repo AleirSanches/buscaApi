@@ -1,10 +1,27 @@
 import React, { useState } from 'react';
 import { Text, View, Image, TouchableOpacity, TextInput, Alert, ScrollView } from 'react-native';
 import estilos from './estilos';
+import api from '../../servicos/api';
+import { buscaUsuario } from '../../servicos/requisicoes/usuario';
 
 export default function Principal({ navigation }) {
     const [nomeUsuario, setNomeUsuario] = useState('');
     const [usuario, setUsuario] = useState({});
+
+    async function busca(){
+        const resultado = await buscaUsuario()
+        console.log(resultado)
+        
+
+        if (resultado){
+            setUsuario(resultado)
+        }
+        else{
+            Alert.alert("Usuario não encontrado")
+            setUsuario({})
+        }
+        
+    }
 
     return (
         <ScrollView>
@@ -14,8 +31,8 @@ export default function Principal({ navigation }) {
                     <View style={estilos.imagemArea}>
                         <Image source={{ uri: 'https://avatars.githubusercontent.com/u/54721131?v=4' }} style={estilos.imagem} />
                     </View>
-                    <Text style={estilos.textoNome}>Nome do usuario</Text>
-                    <Text style={estilos.textoEmail}>Email do usuario</Text>
+                    <Text style={estilos.textoNome}>{usuario.name}</Text>
+                    <Text style={estilos.textoEmail}>{usuario.email}</Text>
                     <View style={estilos.seguidoresArea}>
                         <View style={estilos.seguidores}>
                             <Text style={estilos.seguidoresNumero}>30</Text>
@@ -39,7 +56,7 @@ export default function Principal({ navigation }) {
                     style={estilos.entrada}
                 />
 
-                <TouchableOpacity style={estilos.botao}>
+                <TouchableOpacity style={estilos.botao} onPress={busca}>
                     <Text style={estilos.textoBotao}>
                         Buscar
                     </Text>
