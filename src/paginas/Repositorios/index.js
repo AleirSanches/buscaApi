@@ -25,6 +25,7 @@ export default function Repositorios({ route, navigation }) {
                 <FlatList
                     data={repo}
                     style={{ width: ' 100%'}}
+                    onPress={() => navegation.navegate('InfoRepositorio', {item})}
                     keyExtractor ={repo => repo.id}
                     renderItem={({ item}) => (
                         <TouchableOpacity
