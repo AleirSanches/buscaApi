@@ -25,14 +25,14 @@ export default function Repositorios({ route, navigation }) {
                 <FlatList
                     data={repo}
                     style={{ width: ' 100%'}}
-                    onPress={() => navegation.navegate('InfoRepositorio', {item})}
                     keyExtractor ={repo => repo.id}
                     renderItem={({ item}) => (
                         <TouchableOpacity
-                            style={estilos.repositorio}>
-
+                            style={estilos.repositorio}
+                            onPress={() => navigation.navigate('InfoRepositorio', {item}) }
+                           >     
                                 <Text style={estilos.repositorioNome} >{item.name}</Text>
-                                <Text style={estilos.repositorioData} >{item.data}</Text>
+                                <Text style={estilos.repositorioData} > Atualizado em {item.data}</Text>
                             </TouchableOpacity>
                         
                         
