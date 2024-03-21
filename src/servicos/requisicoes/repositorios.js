@@ -13,3 +13,21 @@ export async function  pegarRepositorio (id){
     }
 
 }
+
+export async function  atualizarRepositorio (postId, nome, data , id){
+
+    try {
+         await api.put(`/repos/${id}`,{
+            name:nome,
+            date:data,
+            postId: postId,
+           
+        });
+        return "Sucesso"
+    }
+    catch (error){
+        console.log(error)
+        return "Erro"
+    }
+
+}
