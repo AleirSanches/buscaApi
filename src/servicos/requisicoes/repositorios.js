@@ -31,3 +31,36 @@ export async function  atualizarRepositorio (postId, nome, data , id){
     }
 
 }
+
+export async function  criaRepositorio (postId, nome, data ){
+
+    try {
+         await api.post(`/repos`,{
+            name:nome,
+            date:data,
+            postId: postId,
+           
+        });
+        return "Sucesso"
+    }
+    catch (error){
+        console.log(error)
+        return "Erro"
+    }
+
+}
+
+export async function  deletaRepositorio (id ){
+
+    try {
+         await api.delete(`/repos ${id} `,{
+            
+        });
+        return "Sucesso"
+    }
+    catch (error){
+        console.log(error)
+        return "Erro"
+    }
+
+}
